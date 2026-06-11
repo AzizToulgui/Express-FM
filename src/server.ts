@@ -6,6 +6,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import { isTest } from '../env.ts'
+import tagRoutes from './routes/tagRoutes.ts'
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/habits', habitRoutes)
+app.use('/api/tags', tagRoutes)
 
 export { app }
 

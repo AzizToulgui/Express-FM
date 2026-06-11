@@ -1,24 +1,25 @@
 import { Router } from 'express'
 import { authenticateToken } from '../middleware/auth.ts'
+import {
+  changePassword,
+  deleteUser,
+  getAllusers,
+  getProfile,
+  updateProfile,
+} from '../controllers/userController.ts'
 
 const router = Router()
 
 router.use(authenticateToken)
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Get all users' })
-})
+router.get('/', getAllusers)
 
-router.get('/:id', (req, res) => {
-  res.json({ message: `Get user with id: ${req.params.id}` })
-})
+router.get('/:id', getProfile)
 
-router.put('/:id', (req, res) => {
-  res.json({ message: `Update user with id: ${req.params.id}` })
-})
+router.post('/:id', changePassword)
 
-router.delete('/:id', (req, res) => {
-  res.json({ message: `Delete user with id: ${req.params.id}` })
-})
+router.put('/:id', updateProfile)
+
+router.delete('/:id', deleteUser)
 
 export default router
